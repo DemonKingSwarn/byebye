@@ -1,9 +1,7 @@
 #+title: ByeBye
 #+property: header-args :mkdirp yes
 
-#+OPTIONS: toc:nil
-...
-#+TOC: headlines 1
+#+OPTIONS: toc:2
 
 * Imports
 

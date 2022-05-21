@@ -1,6 +1,10 @@
 #+title: ByeBye
 #+property: header-args :mkdirp yes
 
+#+OPTIONS: toc:nil
+...
+#+TOC: headlines 1
+
 * Imports
 
 #+begin_src python

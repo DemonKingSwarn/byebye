@@ -3,10 +3,13 @@
 import gi
 gi.require_version("Gtk", "3.0")
 from gi.repository import Gtk
+from gi.repository.GdkPixbuf import Pixbuf
+from gi.repository import Gio
 
 import os
 from os.path import expanduser
 from pathlib import Path
+from urllib.request import urlopen
 
 home = expanduser("~")
 user = os.getlogin()
@@ -28,21 +31,37 @@ class MyWindow(Gtk.Window):
 
         #img = Gtk.Image()
         #img.set_from_file("./img/logout.png")
+        url = "https://github.com/demonkingswarn/byebye/raw/master/byebye/img"
+        resp1 = urlopen(f"{url}/cancel.png")
+        resp2 = urlopen(f"{url}/logout.png")
+        resp3 = urlopen(f"{url}/reboot.png")
+        resp4 = urlopen(f"{url}/shutdown.png")
+        resp5 = urlopen(f"{url}/suspend.png")
+        resp6 = urlopen(f"{url}/hibernate.png")
+        resp7 = urlopen(f"{url}/lock.png")
+
+        inp1 = Gio.MemoryInputStream.new_from_data(resp1.read(), None)
+        inp2 = Gio.MemoryInputStream.new_from_data(resp2.read(), None)
+        inp3 = Gio.MemoryInputStream.new_from_data(resp3.read(), None)
+        inp4 = Gio.MemoryInputStream.new_from_data(resp4.read(), None)
+        inp5 = Gio.MemoryInputStream.new_from_data(resp5.read(), None)
+        inp6 = Gio.MemoryInputStream.new_from_data(resp6.read(), None)
+        inp7 = Gio.MemoryInputStream.new_from_data(resp7.read(), None)
 
         img1 = Gtk.Image()
-        img1.set_from_file("./img/cancel.png")
+        img1.set_from_pixbuf(Pixbuf.new_from_stream(inp1, None))
         img2 = Gtk.Image()
-        img2.set_from_file("./img/logout.png")
+        img2.set_from_pixbuf(Pixbuf.new_from_stream(inp2, None))
         img3 = Gtk.Image()
-        img3.set_from_file("./img/reboot.png")
+        img3.set_from_pixbuf(Pixbuf.new_from_stream(inp3, None))
         img4 = Gtk.Image()
-        img4.set_from_file("./img/shutdown.png")
+        img4.set_from_pixbuf(Pixbuf.new_from_stream(inp4, None))
         img5 = Gtk.Image()
-        img5.set_from_file("./img/suspend.png")
+        img5.set_from_pixbuf(Pixbuf.new_from_stream(inp5, None))
         img6 = Gtk.Image()
-        img6.set_from_file("./img/hibernate.png")
+        img6.set_from_pixbuf(Pixbuf.new_from_stream(inp6, None))
         img7 = Gtk.Image()
-        img7.set_from_file("./img/lock.png")
+        img7.set_from_pixbuf(Pixbuf.new_from_stream(inp7, None))
 
         label1 = Gtk.Label(label="Cancel")
         label1.set_hexpand(True)
@@ -151,7 +170,7 @@ class MyWindow(Gtk.Window):
 
     def on_btn7_clicked(self, widget):
         print("User chose: Lock")
-        os.system(f"/home/demonkingswarn/.scripts/system/lock.sh")
+        os.system(f"slock")
 
 def __byebye__():
     win = MyWindow()

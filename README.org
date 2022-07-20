@@ -1,11 +1,9 @@
 #+title: ByeBye
 #+property: header-args :mkdirp yes
 
-#+OPTIONS: toc:2
-
 * Imports
 
-#+begin_src python
+#+begin_src python :tangle app.py
 #!/usr/bin/env python3
 
 import gi
@@ -21,14 +19,14 @@ from pathlib import Path
 
 ** Assigning some variables
 
-#+begin_src python
+#+begin_src python :tangle app.py
 home = expanduser("~")
 user = os.getlogin()
 #+end_src
 
 ** Creating Window
 
-#+begin_src python
+#+begin_src python :tangle app.py
 class MyWindow(Gtk.Window):
       def __init__(self):
   	super().__init__(title="ByeBye")
@@ -47,7 +45,7 @@ class MyWindow(Gtk.Window):
 
 ** Images
 
-#+begin_src python
+#+begin_src python :tangle app.py
        #img = Gtk.Image()
        #img.set_from_file("./img/logout.png")
 
@@ -69,7 +67,7 @@ class MyWindow(Gtk.Window):
 
 ** Labels
 
-#+begin_src python
+#+begin_src python :tangle app.py
        label1 = Gtk.Label(label="Cancel")
        label1.set_hexpand(True)
 
@@ -94,7 +92,7 @@ class MyWindow(Gtk.Window):
 
 ** Creating Buttons
 
-#+begin_src python
+#+begin_src python :tangle app.py
        btn1 = Gtk.Button(label=None)
        btn1.set_hexpand(True)
        btn1.connect("clicked", self.on_btn1_clicked)
@@ -140,7 +138,7 @@ class MyWindow(Gtk.Window):
 
 ** Creating grid
 
-#+begin_src python
+#+begin_src python :tangle app.py
        grid1.attach(btn1, 0,0,1,1)
        grid1.attach(label1, 0,1,1,1)
        grid1.attach(btn2, 1,0,1,1)
@@ -162,7 +160,7 @@ class MyWindow(Gtk.Window):
 
 ** Button Functions
 
-#+begin_src python
+#+begin_src python :tangle app.py
   def on_btn1_clicked(self, widget):
       print("User chose: Cancel")
       self.destroy()
@@ -194,7 +192,7 @@ class MyWindow(Gtk.Window):
 
 ** The End of the Main
 
-#+begin_src python
+#+begin_src python :tangle app.py
 win = MyWindow()
 
 win.connect("destroy", Gtk.main_quit)

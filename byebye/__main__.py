@@ -131,7 +131,7 @@ class MyWindow(Gtk.Window):
 
     def on_btn2_clicked(self, widget):
         print("User chose: Logout")
-        os.system("pkill -u " + user)
+        os.system(f"pkill -u {user}")
 
     def on_btn3_clicked(self, widget):
         print("User chose: Reboot")
@@ -153,9 +153,11 @@ class MyWindow(Gtk.Window):
         print("User chose: Lock")
         os.system(f"/home/demonkingswarn/.scripts/system/lock.sh")
 
-win = MyWindow()
+def __byebye__():
+    win = MyWindow()
+    win.connect("destroy", Gtk.main_quit)
+    win.show_all()
+    Gtk.main()
 
-win.connect("destroy", Gtk.main_quit)
-
-win.show_all()
-Gtk.main()
+if __name__ == "__main__":
+    __byebye__()
